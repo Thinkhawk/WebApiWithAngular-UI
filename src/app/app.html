@@ -1,0 +1,72 @@
+<!-- Global Spinner -->
+<app-global-spinner></app-global-spinner>
+
+<!-- Main Layout Wrapper -->
+<div class="d-flex flex-column min-vh-100">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+
+      <a class="navbar-brand fw-semibold" href="#">
+        WebApiWithAngular-UI
+      </a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link"
+               routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/categories" routerLinkActive="active">
+              Categories
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/products" routerLinkActive="active">
+              Products
+            </a>
+          </li>
+
+        </ul>
+
+        <span class="navbar-text text-light small">
+          ASP.NET Web API + Angular 22
+        </span>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <main class="flex-fill">
+    <div class="container py-4">
+
+      <!---- The Placeholder for Angular content -->
+      <app-global-spinner></app-global-spinner>
+      <router-outlet></router-outlet>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-light border-top py-3 mt-auto">
+    <div class="container text-center small text-muted">
+      © 2026 Manoj Kumar Sharma - Built with Angular 22 & .NET 10
+    </div>
+  </footer>
+
+</div>

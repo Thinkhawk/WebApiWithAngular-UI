@@ -1,0 +1,72 @@
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Categories</h2>
+
+    <a class="btn btn-primary" routerLink="/categories/create">
+      Add Category
+    </a>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Category Table -->
+  <table *ngIf="categories.length > 0"
+         class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Created</th>
+        <th>Modified</th>
+        <th style="width:160px;">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let category of categories">
+
+        <td>
+          {{ category.categoryId }}
+        </td>
+        <td>
+          {{ category.name }}
+        </td>
+        <td>
+          {{ category.description }}
+        </td>
+        <td>
+          {{ category.createdAtUtc | date:'short' }}
+        </td>
+        <td>
+          {{ category.modifiedAtUtc ? (category.modifiedAtUtc | date:'short') : '-' }}
+        </td>
+        <td>
+          <a class="btn btn-sm btn-warning me-2"
+             [routerLink]="['/categories/edit', category.categoryId]">
+            Edit
+          </a>
+          <button class="btn btn-sm btn-danger">
+            Delete
+          </button>
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <!-- Empty state -->
+  <div *ngIf="categories.length === 0 && !errorMessage"
+       class="alert alert-info">
+    No Categories found.
+  </div>
+
+</div>
