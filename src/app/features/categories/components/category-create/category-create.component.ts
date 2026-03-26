@@ -8,7 +8,6 @@ import { CategoryService } from '../../services/category.service';
 import { CategoryCreateModel } from '../../models/category-create.model';
 import { ValidationProblemDetails } from '../../../../core/models/problem-details.model';
 
-
 /**
  * Component responsible for creating a new Category.
  */
@@ -96,16 +95,28 @@ export class CategoryCreateComponent {
                 this.router.navigate(['/categories']);
             },
 
-            error: (error) => {
+            /**
+             * Error handler, if the interceptor for error handling did not exist
+             */
+            // error: (error) => {
+            //    if (error.error?.errors) {
+            //        const problem = error.error as ValidationProblemDetails;
+            //        this.validationErrors = problem.errors;
+            //        return;
+            //    }
+            //    this.apiError = error.error?.detail ?? 'An Unexpected error occurred calling the API.';
+            //}
 
-                if (error.error?.errors) {
-                    const problem = error.error as ValidationProblemDetails;
-                    this.validationErrors = problem.errors;
+
+            /**
+             * Error handler, leveraging the error handling interceptor - which offers the AppHttpError object.
+             */
+            error: (error) => {
+                if (error.validationErrors) {
+                    this.validationErrors = error.validationErrors;
                     return;
                 }
-
-                this.apiError = error.error?.detail ?? 'An Unexpected error occurred calling the API.';
-
+                this.apiError = error.detail;
             }
 
         });
